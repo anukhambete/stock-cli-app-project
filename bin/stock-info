@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
+require './lib/stock-info'
 
-
-puts "Hello World"
+StockInfo::CLI.new.call
