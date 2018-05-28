@@ -40,3 +40,6 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/'anukh
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 # Notes
+1. `git add .`
+2. `git commit -m "Your message here"`
+3. `git push origin master`
