@@ -4,8 +4,11 @@ class Stock
 
   @@all = []
 
-  def initialize
-    stock_array = ["MSFT", "Microsoft"]
+  # The instances of stocks should be initialized with an array that includes information that was scraped
+  # using the scraper class
+
+  def initialize(array)
+    stock_array = array
     @symbol = stock_array[0]
     @name = stock_array[1]
     @@all << self

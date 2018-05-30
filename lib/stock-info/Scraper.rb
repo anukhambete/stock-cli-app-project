@@ -14,6 +14,7 @@ finviz = Nokogiri::HTML(open("https://finviz.com/screener.ashx?v=111&f=cap_mega,
 
   def self.scrape_screener
     array_main = []
+    finviz = Nokogiri::HTML(open("https://finviz.com/screener.ashx?v=111&f=cap_mega,exch_nasd"))
     fin = finviz.css("div#screener-content").css("td").css("tr[valign=top]")
 
     temp = []
@@ -23,7 +24,7 @@ finviz = Nokogiri::HTML(open("https://finviz.com/screener.ashx?v=111&f=cap_mega,
     temp << name
 
     array_main << temp
-    array_main
+    temp
 
   end
 

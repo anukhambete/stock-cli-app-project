@@ -13,16 +13,17 @@ class StockInfo::CLI
 # the display_list method should use the @@all array from the Stock class to display the list of stocks
 
   def display_list
-    stock = Stock.new
+    array = Scraper.scrape_screener
+    stock = Stock.new(array)
     Stock.all.each do |stock|
-    puts "Enter a valid symbol for more information or to quit enter 'quit'"
+    puts "Enter a valid symbol for more information or enter 'quit' to exit the program"
     puts "#{stock.name} .... #{stock.symbol}"
     end
   end
 
 
   def call
-    puts "To view a list of stocks enter list or to quit enter 'quit'"
+    puts "To view a list of stocks enter list or enter 'quit' to exit the program"
     input_1 = gets.strip
     if["list","quit"].include? input_1.downcase
       if input_1.downcase == "list"
