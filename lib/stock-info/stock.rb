@@ -14,6 +14,12 @@ class Stock
     @@all << self
   end
 
+  def self.create_from_scraper_array(outer_array)
+    outer_array.each do |inner_array|
+      stock = Stock.new(inner_array)
+    end
+  end
+
 
   def self.all
     @@all

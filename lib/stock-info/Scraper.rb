@@ -17,15 +17,23 @@ finviz = Nokogiri::HTML(open("https://finviz.com/screener.ashx?v=111&f=cap_mega,
     finviz = Nokogiri::HTML(open("https://finviz.com/screener.ashx?v=111&f=cap_mega,exch_nasd"))
     fin = finviz.css("div#screener-content").css("td").css("tr[valign=top]")
 
-    temp = []
-    symbol = fin.css("td")[1].text
-    name = fin.css("td")[2].text
-    temp << symbol
-    temp << name
+    fin.each do |f|
+         temp = []
 
-    array_main << temp
-    temp
+         #num = f.css("td")[0].text
+         symbol = f.css("td")[1].text
+         name = f.css("td")[2].text
+         #url = f.css("td")[1].css("a").attribute("href").value
 
+         #temp << num
+         temp << symbol
+         temp << name
+         #temp << url
+         array_main << temp
+       end
+
+    array_main
+    
   end
 
 

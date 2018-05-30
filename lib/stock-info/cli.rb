@@ -11,14 +11,20 @@ class StockInfo::CLI
 # if list then display the list of stocks and symbols --> create method called display_list
 # the display_list method should display the stocks and ask the user to enter a valid symbol
 # the display_list method should use the @@all array from the Stock class to display the list of stocks
+# the create_stocks method should us the scraper and stock classes to create instances of stocks
+
+
+  def create_stocks
+      outer_array = Scraper.scrape_screener
+      Stock.create_from_scraper_array(outer_array)
+  end
+
 
   def display_list
-    array = Scraper.scrape_screener
-    stock = Stock.new(array)
     Stock.all.each do |stock|
-    puts "Enter a valid symbol for more information or enter 'quit' to exit the program"
     puts "#{stock.name} .... #{stock.symbol}"
     end
+    puts "Enter a valid symbol for more information or enter 'quit' to exit the program"
   end
 
 
@@ -28,6 +34,7 @@ class StockInfo::CLI
     if["list","quit"].include? input_1.downcase
       if input_1.downcase == "list"
         # should display objects which are instances of stocks with name and symbols
+        create_stocks
         display_list
       elsif input_1.downcase == "quit"
         puts "You have chosen to exit the app"
