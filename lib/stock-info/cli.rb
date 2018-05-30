@@ -1,5 +1,6 @@
 #require_relative "../stock-info/scraper.rb"
 require_relative "../stock-info/stock.rb"
+require_relative "../stock-info/Scraper.rb"
 require 'nokogiri'
 require 'pry'
 
@@ -12,6 +13,7 @@ class StockInfo::CLI
 
   def display_list
     Stock.all
+    puts "Enter a valid symbol for more information or to quit enter 'quit'"
   end
 
 
