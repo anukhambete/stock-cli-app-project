@@ -4,14 +4,16 @@ class Stock
 
   @@all = []
 
-  def initialize(stock_array)
-
+  def initialize
+    stock_array = ["MSFT", "Microsoft"]
+    @symbol = stock_array[0]
+    @name = stock_array[1]
     @@all << self
   end
 
 
   def self.all
-    puts "All the stocks"
+    @@all
   end
 
 

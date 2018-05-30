@@ -10,10 +10,14 @@ class StockInfo::CLI
 # The cli should display 2 options List and quit and accept a valid input
 # if list then display the list of stocks and symbols --> create method called display_list
 # the display_list method should display the stocks and ask the user to enter a valid symbol
+# the display_list method should use the @@all array from the Stock class to display the list of stocks
 
   def display_list
-    Stock.all
+    stock = Stock.new
+    Stock.all.each do |stock|
     puts "Enter a valid symbol for more information or to quit enter 'quit'"
+    puts "#{stock.name} .... #{stock.symbol}"
+    end
   end
 
 
