@@ -22,7 +22,7 @@ class StockInfo::CLI
 
   def display_list
     Stock.all.each do |stock|
-    puts "#{stock.name} .... #{stock.symbol}"
+    puts "#{stock.srno}    #{stock.name}    #{stock.symbol}"
     end
     puts "Enter a valid symbol for more information or enter 'quit' to exit the program"
   end

@@ -4,6 +4,8 @@ require 'nokogiri'
 
 # The Scraper class should have two methods
 # The first method should be used to scrape the name, symbol, market cap
+# The first method should return an array with arrays for each stock within it :
+# This should be information collected from the main webpage about the 8 large companies
 # url etc. from the main page for all the stocks
 # The second method should scrape information about the individual stock
 # The second method should scrape the EPS P/E ratio and the Index
@@ -20,20 +22,26 @@ finviz = Nokogiri::HTML(open("https://finviz.com/screener.ashx?v=111&f=cap_mega,
     fin.each do |f|
          temp = []
 
-         #num = f.css("td")[0].text
+         num = f.css("td")[0].text
          symbol = f.css("td")[1].text
          name = f.css("td")[2].text
-         #url = f.css("td")[1].css("a").attribute("href").value
+         url = f.css("td")[1].css("a").attribute("href").value
 
-         #temp << num
+         price = f.css("td")[8].text
+         mktcap = f.css("td")[6].text
+         sector = f.css("td")[3].text
+
+         temp << num
          temp << symbol
          temp << name
-         #temp << url
+         temp << url
+         temp << price
+         temp << mktcap
+         temp << sector
+         
          array_main << temp
        end
-
     array_main
-    
   end
 
 

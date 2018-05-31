@@ -1,16 +1,18 @@
 class Stock
 
-  attr_accessor :srno, :name, :symbol, :url, :index, :peratio, :eps
+  attr_accessor :srno, :name, :symbol, :url, :price, :mktcap, :sector, :index, :peratio, :eps
 
   @@all = []
 
   # The instances of stocks should be initialized with an array that includes information that was scraped
   # using the scraper class
+  # The initialized stock should contain information about the Sr no, name, symbol, url and marketcap
 
   def initialize(array)
     stock_array = array
-    @symbol = stock_array[0]
-    @name = stock_array[1]
+    @srno = stock_array[0]
+    @symbol = stock_array[1]
+    @name = stock_array[2]
     @@all << self
   end
 
