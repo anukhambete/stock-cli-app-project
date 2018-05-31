@@ -13,6 +13,7 @@ class Stock
     @srno = stock_array[0]
     @symbol = stock_array[1]
     @name = stock_array[2]
+    @url = stock_array[3]
     @@all << self
   end
 
