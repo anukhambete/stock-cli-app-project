@@ -37,5 +37,16 @@ finviz = Nokogiri::HTML(open("https://finviz.com/screener.ashx?v=111&f=cap_mega,
     array_main
   end
 
+  def self.scrape_stock_info(url)
+    stock_webpage = Nokogiri::HTML(open(url))
+    stock_addinfo_array = []
+    stock = stock_webpage.css("table.snapshot-table2 tr")
+      index = stock.css("td")[1].text
+      peratio = stock.css("td")[3].text
+      eps = stock.css("td")[5].text
+    stock_add_array = [index, pertio, eps]
+  end
+
+
 
 end
