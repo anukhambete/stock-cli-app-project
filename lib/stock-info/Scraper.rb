@@ -44,7 +44,7 @@ finviz = Nokogiri::HTML(open("https://finviz.com/screener.ashx?v=111&f=cap_mega,
       index = stock.css("td")[1].text
       peratio = stock.css("td")[3].text
       eps = stock.css("td")[5].text
-    stock_add_array = [index, pertio, eps]
+    stock_addinfo_array = [index, peratio, eps]
   end
 
 

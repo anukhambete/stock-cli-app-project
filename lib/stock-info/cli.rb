@@ -35,7 +35,7 @@ class StockInfo::CLI
 
   def display_additional_info(stock_symbol)
     stock = Stock.all.find {|stock| stock.symbol == stock_symbol}
-    info = ["x", "y", "z"]             #Scraper.scrape_stock_info(url)
+    info = Scraper.scrape_stock_info("https://finviz.com/" + stock.url)    #Scraper.scrape_stock_info(url)
     stock.add_stock_info(info)
     puts "#{stock.name} index is #{stock.index}"
   end
