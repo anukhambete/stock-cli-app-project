@@ -31,14 +31,7 @@ finviz = Nokogiri::HTML(open("https://finviz.com/screener.ashx?v=111&f=cap_mega,
          mktcap = f.css("td")[6].text
          sector = f.css("td")[3].text
 
-         temp << num
-         temp << symbol
-         temp << name
-         temp << url
-         temp << price
-         temp << mktcap
-         temp << sector
-         
+         temp = [num, symbol, name, url, price, mktcap, sector]
          array_main << temp
        end
     array_main
