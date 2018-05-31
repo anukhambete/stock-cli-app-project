@@ -27,6 +27,12 @@ class Stock
     @@all
   end
 
+  def add_stock_info(info)
+    array = info
+    @index = array[0]
+    @peratio = array[1]
+    @eps = array[2]
+  end
 
 
 end
