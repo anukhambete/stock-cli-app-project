@@ -36,7 +36,9 @@ class StockInfo::CLI
     stock = Stock.all.find {|stock| stock.symbol == stock_symbol}
     info = Scraper.scrape_stock_info("https://finviz.com/" + stock.url)    #Scraper.scrape_stock_info(url)
     stock.add_stock_info(info)
-    puts "#{stock.name} index is #{stock.index} and eps is #{stock.eps}"
+    puts "#{stock.name} belongs to the #{stock.sector} sector and has a marketcap of #{stock.mktcap.gsub("B"," Billion")}"
+    puts "The major index/indices that include(s) it is/are #{stock.index.gsub("DJIA ","DJIA and ")}"
+    puts "The Earnings per share is #{stock.eps}"
     puts "   "
   end
 

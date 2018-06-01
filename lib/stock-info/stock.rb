@@ -15,6 +15,8 @@ class Stock
     @name = stock_array[2]
     @url = stock_array[3]
     @price = stock_array[4]
+    @mktcap = stock_array[5]
+    @sector = stock_array[6]
     @@all << self
   end
 
