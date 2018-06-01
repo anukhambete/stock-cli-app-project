@@ -36,6 +36,23 @@ class StockInfo::CLI
     info = Scraper.scrape_stock_info("https://finviz.com/" + stock.url)    #Scraper.scrape_stock_info(url)
     stock.add_stock_info(info)
     puts "#{stock.name} index is #{stock.index} and eps is #{stock.eps}"
+    puts "   "
+  end
+
+  def input_for_additional_info
+    valid_symbols = Stock.all.collect {|stock| stock.symbol}
+    input_symbol = gets.strip
+    if valid_symbols.include? input_symbol.upcase
+    display_additional_info(input_symbol.upcase)
+    call
+    elsif input_symbol == "quit"
+    puts "You are returning to the main menu"
+    puts "   "
+    call
+    else
+    puts "Enter a valid symbol for more information or enter 'quit' to return to the main menu"
+    input_for_additional_info
+    end
   end
 
 # The call method should
@@ -59,18 +76,7 @@ class StockInfo::CLI
         display_list
         puts "Enter a valid symbol for more information or enter 'quit' to exit the program"
         puts "   "
-        valid_symbols = Stock.all.collect {|stock| stock.symbol}
-
-        input_symbol = gets.strip
-        if valid_symbols.include? input_symbol.upcase
-        display_additional_info(input_symbol)
-        elsif input_symbol == "quit"
-        puts "You are returning to the main menu"
-        puts "   "
-        call
-        else
-        puts "Enter a valid symbol for more information or enter 'quit' to exit the program"
-        end
+        input_for_additional_info
 
       elsif input_1.downcase == "quit"
         puts "You have chosen to exit the app"
