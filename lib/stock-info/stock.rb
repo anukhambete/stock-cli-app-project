@@ -14,6 +14,7 @@ class Stock
     @symbol = stock_array[1]
     @name = stock_array[2]
     @url = stock_array[3]
+    @price = stock_array[4]
     @@all << self
   end
 

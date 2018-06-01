@@ -25,8 +25,9 @@ class StockInfo::CLI
 
   def display_list
     puts "   "
+    #binding.pry
     Stock.all.each do |stock|
-    puts stock.srno.ljust(5) + stock.symbol.ljust(10) + stock.name.rjust(5)
+    puts stock.srno.ljust(5) + stock.symbol.ljust(10) + stock.name.ljust(25) + stock.price.rjust(5)
     end
     puts "   "
   end
