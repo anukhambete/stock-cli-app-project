@@ -68,7 +68,10 @@ class StockInfo::CLI
   end
 
   def display_by_vol
-    puts "vol"
+    array = []
+    array = Stock.all.sort_by {|stock| stock.change.gsub("%","").gsub("-","").to_f}.reverse
+    array.each {|stock| puts stock.name.ljust(25) + stock.change.rjust(1)}
+    puts "  "
   end
 
 # The call method should
@@ -102,7 +105,7 @@ class StockInfo::CLI
       elsif input_1.downcase == "vol"
         create_stocks
         display_by_vol
-        call
+        #call
 
       elsif input_1.downcase == "quit"
         puts "You have chosen to exit the app"
