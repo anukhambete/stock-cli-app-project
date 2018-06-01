@@ -1,6 +1,6 @@
 class Stock
 
-  attr_accessor :srno, :name, :symbol, :url, :price, :mktcap, :sector, :index, :peratio, :eps
+  attr_accessor :srno, :name, :symbol, :url, :price, :mktcap, :sector, :index, :peratio, :eps, :change
 
   @@all = []
 
@@ -17,6 +17,7 @@ class Stock
     @price = stock_array[4]
     @mktcap = stock_array[5]
     @sector = stock_array[6]
+    @change = stock_array[7]
     @@all << self
   end
 

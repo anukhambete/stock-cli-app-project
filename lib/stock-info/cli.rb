@@ -58,8 +58,14 @@ class StockInfo::CLI
     end
   end
 
+  def display_by_market_cap
+    array = []
+    array = Stock.all.sort_by {|stock| stock.mktcap}.reverse
+    array.each {|stock| puts stock.name.ljust(25) + stock.mktcap.gsub("B", " Billion").rjust(1)}
+    puts "  "
+  end
 # The call method should
-# (1) Main menu list options : (a) List of stocks (b) quit
+# (1) Main menu list options : (a) List of stocks (b) Top companies by mkt cap (c) Most volatile stock (d) quit
   # (a) If the user picks a stock from the list a method to display additional information
   # about the stock should be called and then go back to the main menu
   # The symbol entered should be valid?
@@ -69,17 +75,24 @@ class StockInfo::CLI
 
 
   def call
-    puts "(a) To view a list of stocks enter list"
-    puts "(b) To exit the program enter 'quit'"
+    puts "(a) To view the list of stocks enter --- list"
+    puts "(b) To view the list of companies in desc order of Market cap enter --- mkt"
+    puts "(c) To view the list of stocks in desc order of volatility enter --- vol"
+    puts "(b) To exit the program enter --- 'quit'"
 
     input_1 = gets.strip
-    if["list","quit"].include? input_1.downcase
+    if["list", "mkt", "vol", "quit"].include? input_1.downcase
       if input_1.downcase == "list"
         create_stocks
         display_list
-        puts "Enter a valid symbol for more information or enter 'quit' to exit the program"
+        puts "Enter a valid symbol for more information or enter 'quit' to return to the main menu"
         puts "   "
         input_for_additional_info
+
+      elsif input_1.downcase == "mkt"
+          create_stocks
+          display_by_market_cap
+          call
 
       elsif input_1.downcase == "quit"
         puts "You have chosen to exit the app"
