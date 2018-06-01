@@ -43,6 +43,8 @@ class StockInfo::CLI
   end
 
   def input_for_additional_info
+    puts "Enter a valid symbol for more information or enter 'quit' to return to the main menu"
+    puts "   "
     valid_symbols = Stock.all.collect {|stock| stock.symbol}
     input_symbol = gets.strip
     if valid_symbols.include? input_symbol.upcase
@@ -64,6 +66,11 @@ class StockInfo::CLI
     array.each {|stock| puts stock.name.ljust(25) + stock.mktcap.gsub("B", " Billion").rjust(1)}
     puts "  "
   end
+
+  def display_by_vol
+    puts "vol"
+  end
+
 # The call method should
 # (1) Main menu list options : (a) List of stocks (b) Top companies by mkt cap (c) Most volatile stock (d) quit
   # (a) If the user picks a stock from the list a method to display additional information
@@ -85,14 +92,17 @@ class StockInfo::CLI
       if input_1.downcase == "list"
         create_stocks
         display_list
-        puts "Enter a valid symbol for more information or enter 'quit' to return to the main menu"
-        puts "   "
         input_for_additional_info
 
       elsif input_1.downcase == "mkt"
-          create_stocks
-          display_by_market_cap
-          call
+        create_stocks
+        display_by_market_cap
+        call
+
+      elsif input_1.downcase == "vol"
+        create_stocks
+        display_by_vol
+        call
 
       elsif input_1.downcase == "quit"
         puts "You have chosen to exit the app"
