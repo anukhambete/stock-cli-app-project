@@ -49,13 +49,10 @@ class StockInfo::CLI
     input_symbol = gets.strip
     if valid_symbols.include? input_symbol.upcase
     display_additional_info(input_symbol.upcase)
-    call
     elsif input_symbol == "quit"
     puts "You are returning to the main menu"
     puts "   "
-    call
     else
-    puts "Enter a valid symbol for more information or enter 'quit' to return to the main menu"
     input_for_additional_info
     end
   end
@@ -85,6 +82,8 @@ class StockInfo::CLI
 
 
   def call
+    create_stocks unless !Stock.all.empty?
+
     puts "(a) To view the list of stocks enter --- list"
     puts "(b) To view the list of companies in desc order of Market cap enter --- mkt"
     puts "(c) To view the list of stocks in desc order of volatility enter --- vol"
@@ -93,17 +92,15 @@ class StockInfo::CLI
     input_1 = gets.strip
     if["list", "mkt", "vol", "quit"].include? input_1.downcase
       if input_1.downcase == "list"
-        create_stocks
         display_list
         input_for_additional_info
+        call
 
       elsif input_1.downcase == "mkt"
-        create_stocks
         display_by_market_cap
         call
 
       elsif input_1.downcase == "vol"
-        create_stocks
         display_by_vol
         call
 

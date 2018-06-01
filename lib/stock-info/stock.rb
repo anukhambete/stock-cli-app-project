@@ -18,7 +18,7 @@ class Stock
     @mktcap = stock_array[5]
     @sector = stock_array[6]
     @change = stock_array[7]
-    @@all << self
+    @@all << self 
   end
 
   def self.create_from_scraper_array(outer_array)
