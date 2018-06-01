@@ -29,8 +29,6 @@ class StockInfo::CLI
     puts stock.srno.ljust(5) + stock.symbol.ljust(10) + stock.name.rjust(5)
     end
     puts "   "
-    puts "Enter a valid symbol for more information or enter 'quit' to exit the program"
-    puts "   "
   end
 
   def display_additional_info(stock_symbol)
@@ -42,8 +40,9 @@ class StockInfo::CLI
 
 # The call method should
 # (1) Main menu list options : (a) List of stocks (b) quit
-# (a) If the user picks a stock from the list a method to display additional information
-# about the stock should be called and then go back to the main menu
+  # (a) If the user picks a stock from the list a method to display additional information
+  # about the stock should be called and then go back to the main menu
+  # The symbol entered should be valid?
 # (2) Call the appropriate method after the user makes their choice
 # (3) Print an error message if the option is invalid and list the options again
 
@@ -52,13 +51,27 @@ class StockInfo::CLI
   def call
     puts "(a) To view a list of stocks enter list"
     puts "(b) To exit the program enter 'quit'"
+
     input_1 = gets.strip
     if["list","quit"].include? input_1.downcase
       if input_1.downcase == "list"
         create_stocks
         display_list
+        puts "Enter a valid symbol for more information or enter 'quit' to exit the program"
+        puts "   "
+        valid_symbols = Stock.all.collect {|stock| stock.symbol}
+
         input_symbol = gets.strip
+        if valid_symbols.include? input_symbol.upcase
         display_additional_info(input_symbol)
+        elsif input_symbol == "quit"
+        puts "You are returning to the main menu"
+        puts "   "
+        call
+        else
+        puts "Enter a valid symbol for more information or enter 'quit' to exit the program"
+        end
+
       elsif input_1.downcase == "quit"
         puts "You have chosen to exit the app"
       end
