@@ -40,12 +40,21 @@ class StockInfo::CLI
     puts "#{stock.name} index is #{stock.index} and eps is #{stock.eps}"
   end
 
+# The call method should
+# (1) Main menu list options : (a) List of stocks (b) quit
+# (a) If the user picks a stock from the list a method to display additional information
+# about the stock should be called and then go back to the main menu
+# (2) Call the appropriate method after the user makes their choice
+# (3) Print an error message if the option is invalid and list the options again
+
+
+
   def call
-    puts "To view a list of stocks enter list or enter 'quit' to exit the program"
+    puts "(a) To view a list of stocks enter list"
+    puts "(b) To exit the program enter 'quit'"
     input_1 = gets.strip
     if["list","quit"].include? input_1.downcase
       if input_1.downcase == "list"
-        # should display objects which are instances of stocks with name and symbols
         create_stocks
         display_list
         input_symbol = gets.strip
