@@ -1,5 +1,5 @@
 require_relative "./stock-info/version"
 require_relative './stock-info/cli'
-#module StockInfo
+module StockInfo
       # Your code goes here...
-#end
+end

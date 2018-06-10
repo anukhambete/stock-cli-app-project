@@ -10,7 +10,7 @@ require 'nokogiri'
 # The second method should scrape information about the individual stock
 # The second method should scrape the EPS P/E ratio and the Index
 
-class Scraper
+class StockInfo::Scraper
 
 finviz = Nokogiri::HTML(open("https://finviz.com/screener.ashx?v=111&f=cap_mega,exch_nasd"))
 

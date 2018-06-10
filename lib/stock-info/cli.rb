@@ -18,23 +18,23 @@ class StockInfo::CLI
 #
 
   def create_stocks
-      outer_array = Scraper.scrape_screener
-      Stock.create_from_scraper_array(outer_array)
+      outer_array = StockInfo::Scraper.scrape_screener
+      StockInfo::Stock.create_from_scraper_array(outer_array)
   end
 
 
   def display_list
     puts "   "
     #binding.pry
-    Stock.all.each do |stock|
+    StockInfo::Stock.all.each do |stock|
     puts stock.srno.ljust(5) + stock.symbol.ljust(10) + stock.name.ljust(25) + stock.price.rjust(5)
     end
     puts "   "
   end
 
   def display_additional_info(stock_symbol)
-    stock = Stock.all.find {|stock| stock.symbol == stock_symbol}
-    info = Scraper.scrape_stock_info("https://finviz.com/" + stock.url)    #Scraper.scrape_stock_info(url)
+    stock = StockInfo::Stock.all.find {|stock| stock.symbol == stock_symbol}
+    info = StockInfo::Scraper.scrape_stock_info("https://finviz.com/" + stock.url)    #Scraper.scrape_stock_info(url)
     stock.add_stock_info(info)
     puts "#{stock.name} belongs to the #{stock.sector} sector and has a marketcap of #{stock.mktcap.gsub("B"," Billion")}"
     puts "The major index/indices that include(s) it is/are #{stock.index.gsub("DJIA ","DJIA and ")}"
@@ -45,7 +45,7 @@ class StockInfo::CLI
   def input_for_additional_info
     puts "Enter a valid symbol for more information or enter 'quit' to return to the main menu"
     puts "   "
-    valid_symbols = Stock.all.collect {|stock| stock.symbol}
+    valid_symbols = StockInfo::Stock.all.collect {|stock| stock.symbol}
     input_symbol = gets.strip
     if valid_symbols.include? input_symbol.upcase
     display_additional_info(input_symbol.upcase)
@@ -59,14 +59,14 @@ class StockInfo::CLI
 
   def display_by_market_cap
     array = []
-    array = Stock.all.sort_by {|stock| stock.mktcap}.reverse
+    array = StockInfo::Stock.all.sort_by {|stock| stock.mktcap}.reverse
     array.each {|stock| puts stock.name.ljust(25) + stock.mktcap.gsub("B", " Billion").rjust(1)}
     puts "  "
   end
 
   def display_by_vol
     array = []
-    array = Stock.all.sort_by {|stock| stock.change.gsub("%","").gsub("-","").to_f}.reverse
+    array = StockInfo::Stock.all.sort_by {|stock| stock.change.gsub("%","").gsub("-","").to_f}.reverse
     array.each {|stock| puts stock.name.ljust(25) + stock.change.rjust(2)}
     puts "  "
   end
@@ -82,7 +82,7 @@ class StockInfo::CLI
 
 
   def call
-    create_stocks unless !Stock.all.empty?
+    create_stocks unless !StockInfo::Stock.all.empty?
 
     puts "(a) To view the list of stocks enter --- list"
     puts "(b) To view the list of companies in desc order of Market cap enter --- mkt"
