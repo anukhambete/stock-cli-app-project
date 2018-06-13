@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Anu Khambete'"]
   spec.email         = ["'anukhambete@gmail.com'"]
 
-  spec.summary       = %q{ Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{ Write a longer description or delete this line.}
+  spec.summary       = %q{ Stock screener CLI application.}
+  spec.description   = %q{ Refer to README.md.}
   #spec.homepage      = " Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
@@ -26,8 +26,9 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  #spec.bindir        = "exe"
+  spec.executables   = ["stock-info"]
+  #spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.16"
