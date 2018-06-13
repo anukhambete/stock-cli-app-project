@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "stock-cli-app"
-  spec.version       = 1.1 #Stock::Cli::App::VERSION
+  spec.version       = 1.2 #Stock::Cli::App::VERSION
   spec.authors       = ["'Anu Khambete'"]
   spec.email         = ["'anukhambete@gmail.com'"]
 
