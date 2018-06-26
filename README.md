@@ -28,8 +28,7 @@ Or install it yourself as:
     $ gem install stock-cli-app
 
 ## Usage
-
-TODO: Write usage instructions here
+In order to execute enter 'stock-info'
 
 ## Development
 
